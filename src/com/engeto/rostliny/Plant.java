@@ -1,5 +1,6 @@
 package com.engeto.rostliny;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class Plant {
@@ -7,9 +8,9 @@ public class Plant {
     public String notes;
     public LocalDate planted;
     public LocalDate watering;
-    public int frequencyOfWatering;
+    public BigDecimal frequencyOfWatering;
 
-    public Plant(String name, String notes, int frequencyOfWatering, LocalDate watering,LocalDate planted) throws PlantException {
+    public Plant(String name, String notes, BigDecimal frequencyOfWatering, LocalDate watering,LocalDate planted) throws PlantException {
         this.name = name;
         this.notes = notes;
         this.setFrequencyOfWatering(frequencyOfWatering);
@@ -28,7 +29,7 @@ public class Plant {
         this.notes = null;
         this.planted = LocalDate.now();
         this.watering = LocalDate.now();
-        this.setFrequencyOfWatering(7);
+        this.setFrequencyOfWatering(BigDecimal.valueOf(7));
     }
 
     public String getWateringInfo(){
@@ -72,12 +73,12 @@ public class Plant {
         this.watering = watering;
     }
 
-    public int getFrequencyOfWatering() {
+    public BigDecimal getFrequencyOfWatering() {
         return frequencyOfWatering;
     }
 
-    public void setFrequencyOfWatering(int frequencyOfWatering) throws PlantException {
-        if (frequencyOfWatering <= 0){
+    public void setFrequencyOfWatering(BigDecimal frequencyOfWatering) throws PlantException {
+        if (frequencyOfWatering.compareTo(BigDecimal.ZERO) <= 0){
                 throw new PlantException (
                         "Frekvencia polievania nesmie byť 0 a menej" + "(zadal si: " + frequencyOfWatering + ")");
             }
