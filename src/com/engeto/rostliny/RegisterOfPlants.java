@@ -1,8 +1,6 @@
 package com.engeto.rostliny;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -39,6 +37,23 @@ public class RegisterOfPlants {
            throw new PlantException("Nesprávne zadaný dátum na riadku "+lineNumber+":\n"+line);
        }
    }
+
+    public void saveDataToFile (String fileName, String delimiter) throws PlantException {
+        try (PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(fileName)))) {
+            for (Plant plant : plantList){
+                writer.println(
+                        plant.getName() + delimiter
+                                +plant.getNotes() + delimiter
+                                +plant.getFrequencyOfWatering() + delimiter
+                                +plant.getWatering() + delimiter
+                                +plant.getPlanted() + delimiter
+
+                );
+            }
+        } catch (IOException e) {
+            throw new PlantException("Chyba pri zápise do súboru: "+fileName+": "+e.getLocalizedMessage());
+        }
+    }
     public void add(Plant newPlant){
         plantList.add(newPlant);
     }

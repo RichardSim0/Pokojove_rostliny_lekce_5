@@ -47,5 +47,11 @@ public class Main {
         for (Plant plant : plantList){
             System.out.println(plant);
         }
+
+        try {
+            registerOfPlants.saveDataToFile(LoadingSettings.fileName(),LoadingSettings.delimiter());
+        } catch (PlantException e) {
+            System.err.println("Chyba pri zápise do súboru: "+e.getLocalizedMessage());
+        }
     }
 }
