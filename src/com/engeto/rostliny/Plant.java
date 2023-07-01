@@ -2,13 +2,14 @@ package com.engeto.rostliny;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Objects;
 
-public class Plant {
-    public String name;
-    public String notes;
-    public LocalDate planted;
-    public LocalDate watering;
-    public BigDecimal frequencyOfWatering;
+public class Plant implements Comparable<Plant> {
+    private String name;
+    private String notes;
+    private LocalDate planted;
+    private LocalDate watering;
+    private BigDecimal frequencyOfWatering;
 
     public Plant(String name, String notes, BigDecimal frequencyOfWatering, LocalDate watering,LocalDate planted) throws PlantException {
         this.name = name;
@@ -30,6 +31,19 @@ public class Plant {
         this.planted = LocalDate.now();
         this.watering = LocalDate.now();
         this.setFrequencyOfWatering(BigDecimal.valueOf(7));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Plant plant = (Plant) o;
+        return Objects.equals(planted, plant.planted);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(planted);
     }
 
     public String getWateringInfo(){
@@ -88,5 +102,10 @@ public class Plant {
     @Override
     public String toString() {
         return name+" "+notes+"\t"+frequencyOfWatering+"\t"+watering+"\t"+planted;
+    }
+
+    @Override
+    public int compareTo(Plant o) {
+        return name.compareTo(o.name);
     }
 }
