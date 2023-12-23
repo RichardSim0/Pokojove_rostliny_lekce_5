@@ -58,7 +58,7 @@ public class RegisterOfPlants {
         plantList.add(newPlant);
     }
 
-    public void remove(Plant plant){
+    public void remove(int plant){
         plantList.remove(plant);
     }
 
@@ -69,4 +69,5 @@ public class RegisterOfPlants {
     public List<Plant> getPlantList(){
        return new ArrayList<>(plantList);
     }
+
 }

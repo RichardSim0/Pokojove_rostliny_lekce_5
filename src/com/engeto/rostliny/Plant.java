@@ -11,7 +11,7 @@ public class Plant implements Comparable<Plant> {
     private LocalDate watering;
     private BigDecimal frequencyOfWatering;
 
-    public Plant(String name, String notes, BigDecimal frequencyOfWatering, LocalDate watering,LocalDate planted) throws PlantException {
+    public Plant(String name, String notes, BigDecimal frequencyOfWatering, LocalDate watering, LocalDate planted) throws PlantException {
         this.name = name;
         this.notes = notes;
         this.setFrequencyOfWatering(frequencyOfWatering);
@@ -33,21 +33,21 @@ public class Plant implements Comparable<Plant> {
         this.setFrequencyOfWatering(BigDecimal.valueOf(7));
     }
 
+    public String getWateringInfo(){
+        return "Názov: "+name+"; deň polievania{"+watering+"}; doporučený deň ďaľšieho polievania("+frequencyOfWatering+" dní)";
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Plant plant = (Plant) o;
-        return Objects.equals(planted, plant.planted);
+        return Objects.equals(planted, plant.planted) && Objects.equals(name, plant.name) && Objects.equals(notes, plant.notes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(planted);
-    }
-
-    public String getWateringInfo(){
-        return "Názov: "+name+"; deň polievania{"+watering+"}; doporučený deň ďaľšieho polievania("+frequencyOfWatering+" dní)";
+        return Objects.hash(planted, name, notes);
     }
 
     public String getName() {
@@ -106,6 +106,6 @@ public class Plant implements Comparable<Plant> {
 
     @Override
     public int compareTo(Plant o) {
-        return name.compareTo(o.name);
+        return this.name.compareTo(o.name);
     }
 }
