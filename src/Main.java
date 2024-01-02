@@ -30,10 +30,11 @@ public class Main {
             System.err.println("Chyba pri zápise do súboru: "+e.getLocalizedMessage());
         }
 
-        Set<Plant> plantHashSet = new HashSet<>(registerOfPlants.getPlantList());
-        for (Plant plant : plantHashSet){
-            System.out.println(plant.getPlanted());
-        }
+        Set<LocalDate> plantHashSet = new HashSet<>();
 
+        for (Plant plant : registerOfPlants.getPlantList()) {
+            plantHashSet.add(plant.getPlanted());
+        }
+        System.out.println(plantHashSet);
     }
 }

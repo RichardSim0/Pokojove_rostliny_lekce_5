@@ -37,19 +37,6 @@ public class Plant implements Comparable<Plant> {
         return "Názov: "+name+"; deň polievania{"+watering+"}; doporučený deň ďaľšieho polievania("+frequencyOfWatering+" dní)";
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Plant plant = (Plant) o;
-        return Objects.equals(planted, plant.planted) && Objects.equals(name, plant.name) && Objects.equals(notes, plant.notes);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(planted, name, notes);
-    }
-
     public String getName() {
         return name;
     }
